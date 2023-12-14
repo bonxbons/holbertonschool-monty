@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>  // Add this line for string functions
 
 #define STACK_SIZE 1000
 
@@ -8,20 +9,8 @@ typedef struct {
     int top;
 } Stack;
 
-void push(Stack *stack, int value) {
-    if (stack->top == STACK_SIZE - 1) {
-        fprintf(stderr, "Error: Stack overflow\n");
-        exit(EXIT_FAILURE);
-    }
-    stack->stack[++stack->top] = value;
-}
-
-void pall(Stack *stack) {
-    int i;
-    for (i = stack->top; i >= 0; i--) {
-        printf("%d\n", stack->stack[i]);
-    }
-}
+void push(Stack *stack, int value);
+void pall(Stack *stack);
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
