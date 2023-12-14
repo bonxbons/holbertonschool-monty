@@ -1,10 +1,10 @@
-#ifndef SORT_H
-#define SORT_H
+#ifndef MONTY_H
+#define MONTY.H
 
 #include <stddef.h>
 
 void print_array(const int *array, size_t size);
 void bubble_sort(int *array, size_t size);
 
-#endif /* SORT_H */
+#endif /* MONTY.H */
 
