@@ -1,16 +1,16 @@
-// monty_functions.c
 #include "monty.h"
 
 void push(Stack *stack, int value) {
-    // Implementation of the push function
-    // You can use the parameters to perform the necessary operations.
-    // If you don't use the parameters, you can indicate that they are not used.
-    (void)stack;
-    (void)value;
+    if (stack->top == STACK_SIZE - 1) {
+        fprintf(stderr, "Error: Stack overflow\n");
+        exit(EXIT_FAILURE);
+    }
+    stack->stack[++stack->top] = value;
 }
 
 void pall(Stack *stack) {
-    // Implementation of the pall function
-    // Use the stack parameter if needed, or indicate that it's not used.
-    (void)stack;
+    int i;
+    for (i = stack->top; i >= 0; i--) {
+        printf("%d\n", stack->stack[i]);
+    }
 }
