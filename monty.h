@@ -1,10 +1,18 @@
 #ifndef MONTY_H
-#define MONTY.H
+#define MONTY_H
 
-#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-void print_array(const int *array, size_t size);
-void bubble_sort(int *array, size_t size);
+#define STACK_SIZE 1000
 
-#endif /* MONTY.H */
+typedef struct {
+    int stack[STACK_SIZE];
+    int top;
+} Stack;
 
+void push(Stack *stack, int value);
+void pall(Stack *stack);
+
+#endif /* MONTY_H */
