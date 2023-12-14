@@ -1,6 +1,10 @@
+
+#ifndef MONTY_H
+#define MONTY_H
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>  // Add this line for string functions
+#include <string.h>
 
 #define STACK_SIZE 1000
 
@@ -11,6 +15,11 @@ typedef struct {
 
 void push(Stack *stack, int value);
 void pall(Stack *stack);
+
+#endif /* MONTY_H */
+
+// monty.c
+#include "monty.h"
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
@@ -26,6 +35,7 @@ int main(int argc, char *argv[]) {
 
     Stack stack;
     stack.top = -1; // Initialize an empty stack
+    int line_number = 1; // Initialize line number
 
     char opcode[100];
     int value;
@@ -33,16 +43,18 @@ int main(int argc, char *argv[]) {
     while (fscanf(file, "%s", opcode) == 1) {
         if (strcmp(opcode, "push") == 0) {
             if (fscanf(file, "%d", &value) != 1) {
-                fprintf(stderr, "Error: Usage: push integer\n");
+                fprintf(stderr, "L%d: Error: Usage: push integer\n", line_number);
                 exit(EXIT_FAILURE);
             }
             push(&stack, value);
         } else if (strcmp(opcode, "pall") == 0) {
             pall(&stack);
         } else {
-            fprintf(stderr, "Error: Unknown opcode %s\n", opcode);
+            fprintf(stderr, "L%d: Error: Unknown opcode %s\n", line_number, opcode);
             exit(EXIT_FAILURE);
         }
+
+        line_number++; // Increment line number for the next iteration
     }
 
     fclose(file);
